@@ -1,12 +1,12 @@
 def knapsack(W, wt, val, n):
 
-    assert W > 0
+    assert W > 0, "Value of W is less than 0"
 
-    assert W % 10 == 0
+    assert W % 10 == 0, "Value of W is not a multiple of 10"
 
-    assert len(wt) == len(val)
+    assert len(wt) == len(val), "Length of Units and Costs Lists not equal"
 
-    assert len(val) == n
+    assert len(val) == n, "Value of n != num of units"
 
     dp = [[0 for i in range(W + 1)] for j in range(n + 1)]
     for i in range(1 , W+1):
