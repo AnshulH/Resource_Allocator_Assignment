@@ -14,9 +14,9 @@ def OutputJson(regionMap):
         regionValues = dict()
         regionValues[activityConstants.REGION] = region
         regionValues[activityConstants.TOTAL_COST] = regionMap[region]['cost']
-        regionValues["machines"] = getMachineMap(regionMap[region]['subset'])
+        regionValues[activityConstants.MACHINES] = getMachineMap(regionMap[region]['subset'])
         outputMap.append(regionValues)
-    outputJson["Output"] = outputMap
+    outputJson[activityConstants.OUTPUT] = outputMap
     jsonString = json.dumps(outputJson, indent=4)
     return jsonString
 # Maps coresponding subset map to machine based on units 
