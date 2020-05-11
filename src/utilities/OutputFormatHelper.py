@@ -1,6 +1,6 @@
 import json
 import pprint
-from constants import activity_constants as ACTIVITY_CONSTANTS
+from constants import ActivityConstants as ACTIVITY_CONSTANTS
 
 outputWriter = open("output.json", 'w')
 
