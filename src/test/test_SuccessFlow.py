@@ -2,7 +2,7 @@ import json
 
 # TODO: Fix this test 
 def test_weight_value():
-    expected_output = {'Output':
+    expectedOutput = {'Output':
                            [{'region': 'New York', 'total_cost': 10150,
                              'machines': "[('8XLarge', 7), ('XLarge', 1), ('Large', 1)]"},
                             {'region': 'India', 'total_cost': 9520,
@@ -12,12 +12,12 @@ def test_weight_value():
 
 
     import subprocess
-    input_cmd = 'python3 ../main.py --units 1150 --hours 1'
-    subprocess.run(input_cmd, shell=True)
-    actual_output = None
+    inputCmd = 'python3 ../main.py --units 1150 --hours 1'
+    subprocess.run(inputCmd, shell=True)
+    actualOutput = None
     with open('../output.json') as json_file:
-        actual_output = json.load(json_file)
-    assert(actual_output == expected_output), "Output is incorrect!"
+        actualOutput = json.load(json_file)
+    assert(actualOutput == expectedOutput), "Output is incorrect!"
     print("Test Successful!!!")
 
 
