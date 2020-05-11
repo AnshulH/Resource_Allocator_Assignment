@@ -18,34 +18,31 @@ Output generated
 
 ```
 {
-    "Output": [
-        {
-            "region": "NY",
-            "total_cost": 10150,
-            "machines": {
-                "8XLarge": 7,
-                "XLarge": 1,
-                "Large": 1
-            }
-        },
-        {
-            "region": "IND",
-            "total_cost": 9520,
-            "machines": {
-                "8XLarge": 7,
-                "Large": 3
-            }
-        },
-        {
-            "region": "CHN",
-            "total_cost": 8570,
-            "machines": {
-                "8XLarge": 7,
-                "XLarge": 1,
-                "Large": 1
-            }
-        }
-    ]
+    'Output': [ 
+                {
+                'machines': "[
+                    ('8XLarge', 7), 
+                    ('XLarge', 1), 
+                    ('Large', 1)]",
+                'region': 'New York',
+                'total_cost': 10150
+                },
+                {
+                'machines': "[
+                    ('8XLarge', 7), 
+                    ('Large', 3)]",
+                'region': 'India',
+                'total_cost': 9520
+                },
+                {
+                'machines': "[
+                    ('8XLarge', 7), 
+                    ('XLarge', 1), 
+                    ('Large', 1)]",
+                'region': 'China',
+                'total_cost': 8570
+                }
+        ]
 }
 ```
 Tests are present in test directory and can be run against the methods using the below command
