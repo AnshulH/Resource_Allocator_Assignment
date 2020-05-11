@@ -22,22 +22,22 @@ def mainFunc(args):
     regionMap = dict()
 
     for region in ACTIVITY_CONSTANTS.REGION_LIST:
-        optimal_val = dict()
-        regional_optimal_value = dict()
+        optimalVal = dict()
+        regionalOptimalValue = dict()
 
         if region == "NY":
-            optimal_solution, dp = knapsack(units, NY.REGION_MACHINE_UNIT_LIST, NY.REGION_MACHINE_COST_LIST, NY.REGION_MACHINE_COUNT)
-            _construct_solution(dp ,NY.REGION_MACHINE_UNIT_LIST ,NY.REGION_MACHINE_COUNT ,units ,optimal_val)
+            optimalSolution, dp = knapsack(units, NY.REGION_MACHINE_UNIT_LIST, NY.REGION_MACHINE_COST_LIST, NY.REGION_MACHINE_COUNT)
+            _construct_solution(dp ,NY.REGION_MACHINE_UNIT_LIST ,NY.REGION_MACHINE_COUNT ,units ,optimalVal)
         elif region == "IND":
-            optimal_solution, dp = knapsack(units ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COST_LIST ,IND.REGION_MACHINE_COUNT)
-            _construct_solution(dp ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COUNT ,units ,optimal_val)
+            optimalSolution, dp = knapsack(units ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COST_LIST ,IND.REGION_MACHINE_COUNT)
+            _construct_solution(dp ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COUNT ,units ,optimalVal)
         elif region == "CHN":
-            optimal_solution, dp = knapsack(units ,CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COST_LIST ,CHN.REGION_MACHINE_COUNT)
-            _construct_solution(dp, CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COUNT ,units ,optimal_val)
+            optimalSolution, dp = knapsack(units ,CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COST_LIST ,CHN.REGION_MACHINE_COUNT)
+            _construct_solution(dp, CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COUNT ,units ,optimalVal)
 
-        regional_optimal_value["cost"] = optimal_solution * hours
-        regional_optimal_value["subset"] = optimal_val
-        regionMap[region] = regional_optimal_value
+        regionalOptimalValue["cost"] = optimalSolution * hours
+        regionalOptimalValue["subset"] = optimalVal
+        regionMap[region] = regionalOptimalValue
 
     print(OutputJson(regionMap))
 
