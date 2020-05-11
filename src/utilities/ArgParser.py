@@ -1,10 +1,13 @@
 import argparse
 
-# Method to specify the arguments from command line and parse them
-def parse_args(args):
+
+def cli_input():
     parser = argparse.ArgumentParser()
-
-    parser.add_argument('-u', '--units', type = int ,help = "Number of units required (Multiples of 10)")
-    parser.add_argument('-t', '--hours', type = int ,help = "Number of hours the units are required for")
-
-    return parser.parse_args()
+    parser.add_argument('--units', action='store', type=int, help="Number of units required (Multiples of 10)")
+    parser.add_argument('--hours', action='store', type=int, help="Number of hours the units are required for")
+    all_args = parser.parse_args()
+    args_dict = {
+        'units': all_args.units,
+        'hours': all_args.hours
+    }
+    return args_dict
