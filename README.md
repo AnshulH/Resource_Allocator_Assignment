@@ -1,7 +1,12 @@
 # Resource_Allocator_Assignment
-A minimal resource allocation program 
+A minimal resource allocation program. The following program for each geolocation and the resources available in the particular geolocation based on the input number of units and hours generates a json containing the optimal combination of machines that serves the user requirements along with the cost.
 
-Run using -> python3 main.py --units 1150 --hours 1
+## Usage
+The following command to run the program
+
+```
+python3 main.py --units 1150 --hours 1
+```
 
 Output for corresponding
 
@@ -37,4 +42,7 @@ Output for corresponding
     ]
 }
 ```
-To be updated
+Tests are present in test directory and can be run against the methods using
+```
+python3 test_*.py
+```
