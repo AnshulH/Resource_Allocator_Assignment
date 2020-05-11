@@ -8,7 +8,7 @@ The following command to run the program
 python3 main.py --units 1150 --hours 1
 ```
 
-Output for corresponding
+Output generated
 
 ```
 {
