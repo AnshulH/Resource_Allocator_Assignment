@@ -1,3 +1,4 @@
+# This method uses bottom up dp to find the optimal subset of machines and the minimum cost 
 def knapsack(W, wt, val, n):
 
     assert W > 0, "Value of W is less than 0"
