@@ -1,6 +1,10 @@
 # Resource_Allocator_Assignment
 A minimal resource allocation program. The following program for each geolocation and the resources available in the particular geolocation based on the input number of units and hours generates a json containing the optimal combination of machines that serves the user requirements along with the cost.
 
+Current Geolocations present (NY, IND and CHN)
+
+More Geolocations can be added in the Activity and Region Constants file present in constants directory.
+
 ## Usage
 The following command to run the program
 
@@ -42,7 +46,7 @@ Output generated
     ]
 }
 ```
-Tests are present in test directory and can be run against the methods using
+Tests are present in test directory and can be run against the methods using the below command
 ```
 python3 test_*.py
 ```
