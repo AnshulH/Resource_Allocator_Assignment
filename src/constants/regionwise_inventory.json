@@ -1,0 +1,33 @@
+{
+  "New York" :
+  {
+    "machines_dict":
+    {
+      "Large" :   {"cost": 120, "unit": 10},
+      "XLarge":   {"cost": 230, "unit": 20},
+      "2XLarge":  {"cost": 450, "unit": 40},
+      "4XLarge":  {"cost": 774, "unit": 80},
+      "8XLarge":  {"cost": 1400, "unit": 160},
+      "10XLarge": {"cost": 2820, "unit": 320}
+    }
+  },
+  "India": {
+    "machines_dict":
+    {
+      "Large":    {"cost": 140, "unit": 10},
+      "2XLarge":  {"cost": 413, "unit": 40},
+      "4XLarge":  {"cost": 890, "unit": 80},
+      "8XLarge":  {"cost": 1300, "unit": 160},
+      "10XLarge": {"cost": 2970, "unit": 320}
+    }
+  },
+  "China" : {
+    "machines_dict":
+    {
+      "Large":    {"cost": 110, "unit": 10},
+      "XLarge":   {"cost": 200, "unit": 20},
+      "4XLarge":  {"cost": 670, "unit": 80},
+      "8XLarge":  {"cost": 1180, "unit": 160}
+    }
+  }
+}
