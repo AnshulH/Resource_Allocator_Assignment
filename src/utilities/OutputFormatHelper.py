@@ -1,28 +1,25 @@
 import json
-import sys
+import pprint
+from constants import activity_constants as ACTIVITY_CONSTANTS
 
-sys.path.append('../')
-
-import constants.ActivityConstants as activityConstants
+output_writer = open("output.json", 'w')
 
 # Method which generates the required format of json from the region map 
-# region map -> {'NY': {'cost': 8850, 'subset': {160: 6, 40: 1}}, 'IND': {'cost': 8213, 'subset': {160: 6, 40: 1}}, 'CHN': {'cost': 7480, 'subset': {160: 6, 20: 2}}}
-def OutputJson(regionMap):
-    outputJson = dict()
+def output_json(regionMap):
+    outputJsonDict = dict()
     outputMap = list()
     for region in regionMap.keys():
         regionValues = dict()
-        regionValues[activityConstants.REGION] = region
-        regionValues[activityConstants.TOTAL_COST] = regionMap[region]['cost']
-        regionValues[activityConstants.MACHINES] = getMachineMap(regionMap[region]['subset'])
-        outputMap.append(regionValues)
-    outputJson[activityConstants.OUTPUT] = outputMap
-    jsonString = json.dumps(outputJson, indent=4)
-    return jsonString
-# Maps coresponding subset map to machine based on units 
-# ex. LARGE -> 10 units
-def getMachineMap(subset):
-    machineMap = dict()
-    for machine in subset.keys():
-        machineMap[activityConstants.MACHINES_DICT[machine]] = subset[machine]
-    return machineMap        
+        regionValues[ACTIVITY_CONSTANTS.REGION] = region
+        regionValues[ACTIVITY_CONSTANTS.TOTAL_COST] = regionMap[region]['cost']
+        machineList = list()
+        for capacity, units in regionMap[region]['subset'].items():
+            machineList.append((ACTIVITY_CONSTANTS.CAPACITY_MACHINE_MAP[capacity], units))
+        regionValues[ACTIVITY_CONSTANTS.MACHINES] = str(machineList)
+        output_map.append(regionValues)
+    outputJsonDict["Output"] = output_map
+
+    # Print formatted output
+    json.dump(outputJsonDict, output_writer, indent=4)
+    pprint.pprint(outputJsonDict)
+    return outputJsonDict
