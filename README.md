@@ -5,7 +5,7 @@ The following program for each geolocation and the resources available in the pa
 
 Current Geolocations present (NY, IND and CHN)
 
-More Geolocations can be added in the Activity and Region Constants file present in constants directory.
+More Geolocations can be added in the region wise inventory json file present in constants directory.
 
 ## Usage
 The following command to run the program
