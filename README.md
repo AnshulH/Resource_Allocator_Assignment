@@ -5,6 +5,7 @@ Run using -> python3 main.py --units 1150 --hours 1
 
 Output for corresponding
 
+```
 {
     "Output": [
         {
@@ -35,5 +36,5 @@ Output for corresponding
         }
     ]
 }
-
+```
 To be updated
