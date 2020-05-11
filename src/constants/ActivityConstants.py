@@ -1,3 +1,4 @@
+# Constants used across the program 
 REGION = "region"
 
 TOTAL_COST = "total_cost"
@@ -14,7 +15,7 @@ MACHINES_DICT = {
     160 : "8XLarge",
     320 : "10XLarge",
 }
-
+# New region needs to be added to this list for it to be processed
 REGION_LIST = [
     "NY",
     "IND",
