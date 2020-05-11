@@ -22,4 +22,4 @@ def output_json(regionMap):
     # Print formatted output
     json.dump(outputJsonDict, outputWriter, indent=4)
     pprint.pprint(outputJsonDict)
-    return outputJsonDict
+    return json.dumps(outputJsonDict)
