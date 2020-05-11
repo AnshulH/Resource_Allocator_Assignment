@@ -6,40 +6,21 @@ sys.path.append('../../')
 
 from utilities.OutputFormatHelper import OutputJson
 
-expectedOutput = {
-    "Output": [
-        {
-            "region": "NY",
-            "total_cost": 8850,
-            "machines": {
-                "8XLarge": 6,
-                "2XLarge": 1
-            }
-        },
-        {
-            "region": "IND",
-            "total_cost": 8213,
-            "machines": {
-                "8XLarge": 6,
-                "2XLarge": 1
-            }
-        },
-        {
-            "region": "CHN",
-            "total_cost": 7480,
-            "machines": {
-                "8XLarge": 6,
-                "XLarge": 2
-            }
-        }
-    ]
-}
+expectedOutput = {'Output': [{'machines': "[('8XLarge', 7), ('XLarge', 1), ('Large', 1)]",
+             'region': 'New York',
+             'total_cost': 10150},
+            {'machines': "[('8XLarge', 7), ('Large', 3)]",
+             'region': 'India',
+             'total_cost': 9520},
+            {'machines': "[('8XLarge', 7), ('XLarge', 1), ('Large', 1)]",
+             'region': 'China',
+             'total_cost': 8570}]}
 
 
 class TestOutputFormatHelper(unittest.TestCase): 
 
     def test_output_json(self):
-        regionMap = {'NY': {'cost': 8850, 'subset': {160: 6, 40: 1}}, 'IND': {'cost': 8213, 'subset': {160: 6, 40: 1}}, 'CHN': {'cost': 7480, 'subset': {160: 6, 20: 2}}}
+        regionMap = {'New York': {'cost': 10150, 'subset': {160: 7, 20: 1, 10: 1}}, 'India': {'cost': 9520, 'subset': {160: 7, 10: 3}}, 'China': {'cost': 8570, 'subset': {160: 7, 20: 1, 10: 1}}}
         actualResponse = OutputJson(regionMap)
         self.assertEqual(json.loads(actualResponse),expectedOutput)
     
