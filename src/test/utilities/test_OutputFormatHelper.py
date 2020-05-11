@@ -4,7 +4,7 @@ import json
 
 sys.path.append('../../')
 
-from utilities.OutputFormatHelper import OutputJson
+from utilities.OutputFormatHelper import output_json
 
 expectedOutput = {'Output': [{'machines': "[('8XLarge', 7), ('XLarge', 1), ('Large', 1)]",
              'region': 'New York',
@@ -21,7 +21,7 @@ class TestOutputFormatHelper(unittest.TestCase):
 
     def test_output_json(self):
         regionMap = {'New York': {'cost': 10150, 'subset': {160: 7, 20: 1, 10: 1}}, 'India': {'cost': 9520, 'subset': {160: 7, 10: 3}}, 'China': {'cost': 8570, 'subset': {160: 7, 20: 1, 10: 1}}}
-        actualResponse = OutputJson(regionMap)
+        actualResponse = output_json(regionMap)
         self.assertEqual(json.loads(actualResponse),expectedOutput)
     
           
