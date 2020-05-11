@@ -13,6 +13,9 @@ from utilities.OutputFormatHelper import OutputJson
 def mainFunc(args):
     parser = parse_args(args[1:])
 
+    assert parser.units != None, "Please specify units required"
+    assert parser.hours != None, "Please specify total hours required"
+
     units = parser.units
     hours = parser.hours
 
@@ -40,7 +43,3 @@ def mainFunc(args):
 
 if __name__ == "__main__":
     mainFunc(sys.argv)
-
-       
-    
-    
