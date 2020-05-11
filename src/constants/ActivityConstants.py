@@ -1,13 +1,11 @@
-# Constants used across the program 
+# Constant Strings
 REGION = "region"
-
 TOTAL_COST = "total_cost"
-
 MACHINES = "machines"
-
 OUTPUT = "Output"
 
-MACHINES_DICT = {
+# Machine to capacity map
+CAPACITY_MACHINE_MAP = {
     10 : "Large",
     20 : "XLarge",
     40 : "2XLarge",
@@ -15,9 +13,16 @@ MACHINES_DICT = {
     160 : "8XLarge",
     320 : "10XLarge",
 }
-# New region needs to be added to this list for it to be processed
+
+# Region constants
+NY = "New York"
+IND = "India"
+CHN = "China"
+
+# Region list
 REGION_LIST = [
-    "NY",
-    "IND",
-    "CHN"
+    NY,
+    IND,
+    CHN
 ]
+
