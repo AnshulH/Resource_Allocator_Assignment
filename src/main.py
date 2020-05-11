@@ -1,45 +1,46 @@
 import json
-import sys
+from utilities.input_parser import cli_input
+from utilities.resource_allocation import knapsack, construct_solution
+from utilities.output_format_helper import output_json
+from constants import activity_constants as ACTIVITY_CONSTANTS
 
-import constants.ActivityConstants as ACTIVITY_CONSTANTS
-import constants.regionConstants.India as IND
-import constants.regionConstants.NewYork as NY
-import constants.regionConstants.China as CHN
+inventory_file = open('constants/regionwise_inventory.json', )
+REGION_WISE_INVENTORY = json.load(inventory_file)
 
-from utilities.ArgParser import parse_args
-from utilities.ResourceAllocation import knapsack, _construct_solution 
-from utilities.OutputFormatHelper import OutputJson
 
-def mainFunc(args):
-    parser = parse_args(args[1:])
+def resourceAllocationEngine():
+    # Obtain inputs from commandline
+    args = cli_input()
+    units = args["units"]
+    hours = args["hours"]
 
-    assert parser.units != None, "Please specify units required"
-    assert parser.hours != None, "Please specify total hours required"
-
-    units = parser.units
-    hours = parser.hours
-
+    assert units != None, "Please specify units required"
+    assert hours != None, "Please specify total hours required"
+    
+    # Map to save region wise cost and resource allocation information
     regionMap = dict()
 
+    # Allocate resources region wise
     for region in ACTIVITY_CONSTANTS.REGION_LIST:
         optimalVal = dict()
-        regionalOptimalValue = dict()
+        regionUnitList = list()
+        regionCostList = list()
+        regionInventory = REGION_WISE_INVENTORY[region]["machines_dict"]
+        for machine in regionInventory.keys():
+            regionUnitList.append(regionInventory[machine].get("unit", 0))
+            regionCostList.append(regionInventory[machine].get("cost", 0))
 
-        if region == "NY":
-            optimalSolution, dp = knapsack(units, NY.REGION_MACHINE_UNIT_LIST, NY.REGION_MACHINE_COST_LIST, NY.REGION_MACHINE_COUNT)
-            _construct_solution(dp ,NY.REGION_MACHINE_UNIT_LIST ,NY.REGION_MACHINE_COUNT ,units ,optimalVal)
-        elif region == "IND":
-            optimalSolution, dp = knapsack(units ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COST_LIST ,IND.REGION_MACHINE_COUNT)
-            _construct_solution(dp ,IND.REGION_MACHINE_UNIT_LIST ,IND.REGION_MACHINE_COUNT ,units ,optimalVal)
-        elif region == "CHN":
-            optimalSolution, dp = knapsack(units ,CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COST_LIST ,CHN.REGION_MACHINE_COUNT)
-            _construct_solution(dp, CHN.REGION_MACHINE_UNIT_LIST ,CHN.REGION_MACHINE_COUNT ,units ,optimalVal)
+        optimalSolution, dp = knapsack(units,  regionUnitList, regionCostList)
+        construct_solution(dp, regionUnitList, len(regionUnitList), units, optimalVal)
 
-        regionalOptimalValue["cost"] = optimalSolution * hours
-        regionalOptimalValue["subset"] = optimalVal
-        regionMap[region] = regionalOptimalValue
+        regionMap[region] = {
+            "cost": optimalSolution * hours,
+            "subset": optimalVal
+        }
 
-    print(OutputJson(regionMap))
+    # Generate output
+    output_json(regionMap)
+
 
 if __name__ == "__main__":
-    mainFunc(sys.argv)
+    resourceAllocationEngine()
