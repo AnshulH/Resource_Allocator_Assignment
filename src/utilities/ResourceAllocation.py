@@ -1,13 +1,13 @@
 # This method uses bottom up dp to find the optimal subset of machines and the minimum cost 
-def knapsack(W, wt, val, n):
+def knapsack(W, wt, val):
 
-    assert W > 0, "Value of W is less than 0"
+    assert (W > 0), "Value of W is less than 0"
 
-    assert W % 10 == 0, "Value of W is not a multiple of 10"
+    assert (W % 10 == 0), "Value of W is not a multiple of 10"
 
-    assert len(wt) == len(val), "Length of Units and Costs Lists not equal"
+    assert (len(wt) == len(val)), "Length of Units and Costs Lists not equal"
 
-    assert len(val) == n, "Value of n != num of units"
+    n = len(wt)
 
     dp = [[0 for i in range(W + 1)] for j in range(n + 1)]
     for i in range(1 , W+1):
@@ -21,7 +21,8 @@ def knapsack(W, wt, val, n):
 
     return dp[n][W], dp
 
-def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: dict):
+
+def construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: dict):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
@@ -38,11 +39,12 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: dict):
     """
     if i > 0 and j > 0:
         if dp[i - 1][j] == dp[i][j]:
-            _construct_solution(dp, wt, i - 1, j, optimal_set)
+            construct_solution(dp, wt, i - 1, j, optimal_set)
         else:
-            if(wt[i-1] in optimal_set):
+            if wt[i - 1] in optimal_set:
                 optimal_set[wt[i-1]] += 1
             else:
                 optimal_set[wt[i-1]] = 1
-            _construct_solution(dp, wt, i, j - wt[i - 1], optimal_set)
+            construct_solution(dp, wt, i, j - wt[i - 1], optimal_set)
+
 
